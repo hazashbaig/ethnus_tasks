@@ -6,18 +6,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Bootstrap Form</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css" />
+    <style>
+        .bg-gray {
+            background-color: #f0f0f0;
+        }
+        .btn-orange {
+            background-color: #ea9e2a;
+        }
+        .is-invalid {
+            border-color: red !important;
+        }
+        .input-icon.is-invalid {
+            background-color: #ffcccc !important;
+        }
+        .input-icon.is-invalid img {
+            filter: brightness(0) invert(1);
+        }
+        .custom-label.is-invalid {
+            color: red !important;
+        }
+        .font-weight-md {
+            font-weight: 600;
+        }
+
+    </style>
 </head>
 
 <body class="bg-gray">
-    <div class="container py-5">
+    <div class="container py-4">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <form>
                     <table class="table">
                         <tr>
-                            <td>
-                                <label for="firstname" class="text-dark">First Name</label>
+                            <td class="text-right">
+                                <label for="firstName" class="font-weight-md">First Name</label>
                             </td>
                             <td>
                                 <div class="input-group">
@@ -29,8 +52,8 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                <label for="lastName" class="text-dark">Last Name</label>
+                            <td class="text-right">
+                                <label for="lastName" class="font-weight-md">Last Name</label>
                             </td>
                             <td>
                                 <div class="input-group">
@@ -42,8 +65,8 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                <label for="email" class="text-dark">E-Mail</label>
+                            <td class="text-right">
+                                <label for="email" class="font-weight-md">E-Mail</label>
                             </td>
                             <td>
                                 <div class="input-group">
@@ -55,21 +78,21 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                <label for="phone" class="text-dark">Phone</label>
+                            <td class="text-right">
+                                <label for="phone" class="font-weight-md">Phone</label>
                             </td>
                             <td>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <img src="phone.svg" alt="head-icon" class="input-icon border" />
+                                        <img src="phone.svg" alt="head-icon" class="input-icon border p-1" />
                                     </div>
                                     <input type="tel" class="form-control border" id="phone" placeholder="Phone" style="background-color: white" />
                                 </div>
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                <label for="address" class="text-dark">Address</label>
+                            <td class="text-right">
+                                <label for="address" class="font-weight-md">Address</label>
                             </td>
                             <td>
                                 <div class="input-group">
@@ -81,8 +104,8 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                <label for="city" class="text-dark">City</label>
+                            <td class="text-right">
+                                <label for="city" class="font-weight-md">City</label>
                             </td>
                             <td>
                                 <div class="input-group">
@@ -94,13 +117,13 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                <label for="state" class="text-dark">State</label>
+                            <td class="text-right">
+                                <label for="state" class="font-weight-md">State</label>
                             </td>
                             <td>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <img src="list.svg" alt="head-icon" class="input-icon border" />
+                                        <img src="list.svg" alt="head-icon" class="input-icon border p-1" height="35" width="35"/>
                                     </div>
                                     <select class="form-control border" id="state" style="background-color: white">
                                         <option>Select State</option>
@@ -112,8 +135,8 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                <label class="text-dark font-weight-bold">Do you have hosting?</label>
+                            <td class="text-right">
+                                <label class="font-weight-bold">Do you have hosting?</label>
                             </td>
                             <td>
                                 <div class="form-group">
@@ -129,8 +152,8 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                <label for="projectDescription" class="text-dark font-weight-bold">Project Description</label>
+                            <td class="text-right">
+                                <label for="projectDescription" class="font-weight-bold">Project Description</label>
                             </td>
                             <td>
                                 <div class="input-group">
@@ -143,9 +166,11 @@
                         </tr>
                     </table>
 
-                    <button type="submit" class="btn btn-warning btn-block text-white">
-                        Send
-                    </button>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-orange text-white">
+                            Send <img src="paperplane.svg" alt="head-icon" class="input-icon" width="25" height="25" />
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -154,6 +179,75 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('form');
+
+        form.addEventListener('submit', function(event) {
+            let formIsValid = true;
+
+            const formElements = this.elements;
+
+            for (let i = 0; i < formElements.length; i++) {
+                const element = formElements[i];
+
+                if (element.type !== 'submit' && element.type !== 'radio') {
+                    if (!element.value) {
+                        formIsValid = false;
+                        element.classList.add('is-invalid');
+
+                        // Add this code to apply additional styles for input-icon
+                        const inputGroup = element.closest('.input-group');
+                        const inputIcon = inputGroup.querySelector('.input-icon');
+                        inputIcon.classList.add('is-invalid');
+                    } else {
+                        element.classList.remove('is-invalid');
+
+                        // Add this code to remove additional styles for input-icon
+                        const inputGroup = element.closest('.input-group');
+                        const inputIcon = inputGroup.querySelector('.input-icon');
+                        inputIcon.classList.remove('is-invalid');
+                    }
+
+                    // Check if the element has a corresponding label
+                    const label = document.querySelector(`label[for="${element.id}"]`);
+                    if (label) {
+                        if (!element.value) {
+                            label.classList.add('text-danger');
+                        } else {
+                            label.classList.remove('text-danger');
+                        }
+                    }
+                }
+            }
+
+            const radioButtons = document.getElementsByName('hosting');
+
+            let radioChecked = false;
+
+            for (let i = 0; i < radioButtons.length; i++) {
+                if (radioButtons[i].checked) {
+                    radioChecked = true;
+                    break;
+                }
+            }
+
+            if (!radioChecked) {
+                formIsValid = false;
+                document.getElementById('hostingYes').classList.add('is-invalid');
+            } else {
+                document.getElementById('hostingYes').classList.remove('is-invalid');
+            }
+
+            if (!formIsValid) {
+                event.preventDefault();
+            }
+        });
+    });
+
+    </script>
+    
 </body>
 
 </html>
